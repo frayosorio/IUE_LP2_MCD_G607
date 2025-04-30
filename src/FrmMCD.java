@@ -56,7 +56,30 @@ public class FrmMCD extends JFrame {
     }
 
     private void calcular() {
+        // obtener los datosde entrada
+        int numero1 = Integer.parseInt(txtNumero1.getText());
+        int numero2 = Integer.parseInt(txtNumero2.getText());
 
+        // version iterativa
+        int residuo = numero1 % numero2;
+        while (residuo != 0) {
+            numero1 = numero2;
+            numero2 = residuo;
+            residuo = numero1 % numero2;
+        }
+
+        txtResultado.setText(String.valueOf(numero2));
+
+        // version recursiva
+        txtResultadoR.setText(String.valueOf(mcd(numero1, numero2)));
+    }
+
+    private int mcd(int n1, int n2) {
+        if (n2 == 0) {
+            return n1;
+        } else {
+            return mcd(n2, n1 % n2);
+        }
     }
 
 }
